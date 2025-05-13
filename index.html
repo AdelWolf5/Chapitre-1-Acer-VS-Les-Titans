@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Guerre des Marques — Chapitre 1 : Acer VS Les Titans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        asus: '#0078D7',
+                        gigabyte: '#FF6600',
+                        msi: '#E32636',
+                        acer: '#83B81A'
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 2s infinite',
+                        'pulse-slow': 'pulse 3s infinite',
+                        'wiggle': 'wiggle 1s ease-in-out infinite',
+                        'shake': 'shake 0.5s ease-in-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'blink': 'blink 1s linear infinite'
+                    },
+                    keyframes: {
+                        wiggle: {
+                            '0%, 100%': { transform: 'rotate(-3deg)' },
+                            '50%': { transform: 'rotate(3deg)' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-10px)' },
+                            '20%, 40%, 60%, 80%': { transform: 'translateX(10px)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        blink: {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: 0.3 }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes rgb-glow {
+            0% { text-shadow: 0 0 10px #ff0000; }
+            16.666% { text-shadow: 0 0 10px #ff8000; }
+            33.333% { text-shadow: 0 0 10px #ffff00; }
+            50% { text-shadow: 0 0 10px #00ff00; }
+            66.666% { text-shadow: 0 0 10px #0000ff; }
+            83.333% { text-shadow: 0 0 10px #8000ff; }
+            100% { text-shadow: 0 0 10px #ff0000; }
+        }
+        
+        .rgb-text {
+            animation: rgb-glow 3s linear infinite;
+        }
+        
+        .speech-bubble {
+            position: relative;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 20px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: inherit;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+        }
+        
+        .dark .page-card {
+            background-color: #2d3748;
+            color: #e2e8f0;
+        }
+        
+        .shake-element {
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        @keyframes freeze {
+            0%, 100% { opacity: 1; }
+            25% { opacity: 0.7; }
+            50% { opacity: 1; }
+            75% { opacity: 0.7; }
+        }
+        
+        .freeze-effect {
+            animation: freeze 2s infinite;
+        }
+        
+        .page-number {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            opacity: 0.5;
+        }
+        
+        .book-container {
+            perspective: 1000px;
+        }
+        
+        .page-turn {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        
+        .page-turn-left {
+            transform: rotateY(-10deg);
+        }
+        
+        .page-turn-right {
+            transform: rotateY(10deg);
+        }
+        
+        @keyframes overheat {
+            0% { color: #ff9900; }
+            50% { color: #ff0000; }
+            100% { color: #ff9900; }
+        }
+        
+        .overheat {
+            animation: overheat 1.5s infinite;
+        }
+        
+        @keyframes cooling {
+            0% { color: #0066ff; }
+            50% { color: #00ccff; }
+            100% { color: #0066ff; }
+        }
+        
+        .cooling {
+            animation: cooling 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="container mx-auto px-4 py-8 max-w-4xl book-container">
+        <!-- Book Cover -->
+        <div id="cover" class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 text-center transition-all duration-500 relative">
+            <h1 class="text-4xl font-bold mb-4 rgb-text">La Guerre des Marques</h1>
+            <h2 class="text-2xl mb-8">Chapitre 1 : Acer VS Les Titans</h2>
+            
+            <div class="flex justify-center mb-12 space-x-6">
+                <div class="text-asus"><i class="fa-solid fa-computer fa-4x"></i><p class="mt-2 font-bold">ASUS</p></div>
+                <div class="text-gigabyte"><i class="fa-solid fa-microchip fa-4x"></i><p class="mt-2 font-bold">Gigabyte</p></div>
+                <div class="text-msi"><i class="fa-solid fa-dragon fa-4x"></i><p class="mt-2 font-bold">MSI</p></div>
+                <div class="text-acer opacity-60"><i class="fa-solid fa-laptop fa-4x freeze-effect"></i><p class="mt-2 font-bold">Acer</p></div>
+            </div>
+            
+            <div class="flex justify-center mt-6 mb-6">
+                <i class="fa-solid fa-arrow-right-arrow-left text-3xl text-red-500 animate-pulse-slow"></i>
+            </div>
+            
+            <button id="start-button" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg transition transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                Ouvrir le livre
+            </button>
+        </div>
+        
+        <!-- Page 1 -->
+        <div id="page-1" class="page-card hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 transition-all duration-500 relative">
+            <h2 class="text-2xl font-bold mb-6 rgb-text">Page 1 — Le Conseil Suprême</h2>
+            <p class="mb-4 italic text-gray-600 dark:text-gray-400">Dans une salle secrète, ASUS, Gigabyte et MSI tiennent réunion.</p>
+            
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <div class="relative">
+                            <i class="fa-solid fa-computer text-4xl text-asus"></i>
+                            <i class="fa-solid fa-lightbulb text-yellow-400 text-sm absolute top-0 right-0 rgb-text"></i>
+                        </div>
+                    </div>
+                    <div class="speech-bubble bg-asus bg-opacity-20 border-asus dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-asus">ASUS (en costard RGB) :</h3>
+                        <p>"Frères ! Nos utilisateurs méritent le top ! RGB, performance, refroidissement !"</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <div class="relative">
+                            <i class="fa-solid fa-microchip text-4xl text-gigabyte"></i>
+                            <i class="fa-solid fa-glasses text-gray-800 text-sm absolute top-0 right-0"></i>
+                        </div>
+                    </div>
+                    <div class="speech-bubble bg-gigabyte bg-opacity-20 border-gigabyte dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-gigabyte">Gigabyte (avec des lunettes d'ingé) :</h3>
+                        <p>"Moi j'ai AORUS, je fais trembler Cinebench !"</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <div class="relative">
+                            <i class="fa-solid fa-dragon text-4xl text-msi"></i>
+                            <i class="fa-solid fa-headset text-gray-700 text-sm absolute top-0 right-0"></i>
+                        </div>
+                    </div>
+                    <div class="speech-bubble bg-msi bg-opacity-20 border-msi dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-msi">MSI (casque de gamer sur la tête) :</h3>
+                        <p>"Mes PC portables crient 'Dragon Power' à chaque démarrage !"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-number">1</div>
+            
+            <div class="mt-8 flex justify-between">
+                <button class="page-nav back-btn bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded transition">
+                    Retour
+                </button>
+                <button class="page-nav next-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition">
+                    Page suivante
+                </button>
+            </div>
+        </div>
+        
+        <!-- Page 2 -->
+        <div id="page-2" class="page-card hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 transition-all duration-500 relative">
+            <h2 class="text-2xl font-bold mb-6 rgb-text">Page 2 — L'arrivée d'Acer</h2>
+            <p class="mb-6 italic text-gray-600 dark:text-gray-400">Un bruit bizarre… Bzzt… clac… pfffffff…</p>
+            
+            <div class="space-y-6">
+                <div class="flex items-center justify-center mb-8">
+                    <div class="text-center">
+                        <i class="fa-solid fa-laptop text-5xl text-acer freeze-effect"></i>
+                        <p class="mt-2 font-bold italic text-gray-600 dark:text-gray-400">Acer entre en boitant, sur un vieux laptop.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-laptop text-4xl text-acer animate-wiggle"></i>
+                    </div>
+                    <div class="speech-bubble bg-acer bg-opacity-20 border-acer dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-acer">Acer :</h3>
+                        <p>"Je… Je suis là aussi… non ?"</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-computer text-4xl text-asus"></i>
+                    </div>
+                    <div class="speech-bubble bg-asus bg-opacity-20 border-asus dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-asus">ASUS :</h3>
+                        <p>"Toi ? Avec ton plastique qui chauffe à <span class="overheat">90°C</span> ?!"</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-microchip text-4xl text-gigabyte"></i>
+                    </div>
+                    <div class="speech-bubble bg-gigabyte bg-opacity-20 border-gigabyte dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-gigabyte">Gigabyte :</h3>
+                        <p>"Ton BIOS ? Il est plus lent que Windows XP sur disquette."</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-dragon text-4xl text-msi"></i>
+                    </div>
+                    <div class="speech-bubble bg-msi bg-opacity-20 border-msi dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-msi">MSI :</h3>
+                        <p>"Ton RGB ? C'est une LED verte collée à la main !"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-number">2</div>
+            
+            <div class="mt-8 flex justify-between">
+                <button class="page-nav back-btn bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded transition">
+                    Page précédente
+                </button>
+                <button class="page-nav next-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition">
+                    Page suivante
+                </button>
+            </div>
+        </div>
+        
+        <!-- Page 3 -->
+        <div id="page-3" class="page-card hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 transition-all duration-500 relative">
+            <h2 class="text-2xl font-bold mb-6 rgb-text">Page 3 — La Guerre</h2>
+            <p class="mb-4 italic text-gray-600 dark:text-gray-400">Acer se met en colère !</p>
+            
+            <div class="space-y-8">
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-laptop text-4xl text-acer"></i>
+                    </div>
+                    <div class="speech-bubble bg-acer bg-opacity-20 border-acer dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-acer">Acer :</h3>
+                        <p class="font-bold text-2xl">"JE SUIS MOINS CHER !!!"</p>
+                    </div>
+                </div>
+                
+                <div class="text-center mb-4">
+                    <p class="italic text-gray-600 dark:text-gray-400">Il lance un vieux ventilateur.</p>
+                    <i class="fa-solid fa-fan text-4xl text-gray-400 animate-spin my-4"></i>
+                </div>
+                
+                <div class="md:flex space-y-6 md:space-y-0 md:space-x-4 mb-8">
+                    <div class="md:w-1/3 p-4 rounded-lg bg-opacity-10 bg-asus dark:bg-opacity-20 text-center">
+                        <div class="text-asus mb-4">
+                            <i class="fa-solid fa-droplet text-4xl cooling"></i>
+                        </div>
+                        <p><strong class="text-asus">ASUS</strong> esquive et répond avec un watercooling DeepCool.</p>
+                    </div>
+                    
+                    <div class="md:w-1/3 p-4 rounded-lg bg-opacity-10 bg-gigabyte dark:bg-opacity-20 text-center">
+                        <div class="text-gigabyte mb-4">
+                            <i class="fa-solid fa-bolt text-4xl"></i>
+                        </div>
+                        <p><strong class="text-gigabyte">Gigabyte</strong> active le mode OC automatique.</p>
+                    </div>
+                    
+                    <div class="md:w-1/3 p-4 rounded-lg bg-opacity-10 bg-msi dark:bg-opacity-20 text-center">
+                        <div class="text-msi mb-4">
+                            <i class="fa-solid fa-dragon text-4xl rgb-text"></i>
+                        </div>
+                        <p><strong class="text-msi">MSI</strong> sort son logo dragon et crie : "<span class="font-bold">FATAL FRAME BOOST !</span>"</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-number">3</div>
+            
+            <div class="mt-8 flex justify-between">
+                <button class="page-nav back-btn bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded transition">
+                    Page précédente
+                </button>
+                <button class="page-nav next-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition">
+                    Page suivante
+                </button>
+            </div>
+        </div>
+        
+        <!-- Page 4 -->
+        <div id="page-4" class="page-card hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 transition-all duration-500 relative">
+            <h2 class="text-2xl font-bold mb-6 rgb-text">Page 4 — L'utilisateur arrive</h2>
+            
+            <div class="mb-8 p-4 bg-gray-100 dark:bg-gray-700 rounded-lg text-center">
+                <i class="fa-solid fa-user-tie text-4xl text-purple-600 mb-2"></i>
+                <p class="italic text-gray-600 dark:text-gray-400">Adel entre, avec son PC gamer de 2484€</p>
+                <p class="font-medium">RX 7900 XTX, 32 Go DDR5, SSD 1 To, tout brille…</p>
+            </div>
+            
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-user-tie text-4xl text-purple-600"></i>
+                    </div>
+                    <div class="speech-bubble bg-purple-600 bg-opacity-20 border-purple-600 dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-purple-600">Adel :</h3>
+                        <p>"Calmez-vous ! Je vous ai tous testés. Acer… retourne à l'école."</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-laptop text-4xl text-acer"></i>
+                    </div>
+                    <div class="speech-bubble bg-acer bg-opacity-20 border-acer dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-acer">Acer :</h3>
+                        <p class="italic">(triste) "Je voulais juste être aimé…"</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="w-16 flex-shrink-0 mr-4">
+                        <i class="fa-solid fa-dragon text-4xl text-msi"></i>
+                    </div>
+                    <div class="speech-bubble bg-msi bg-opacity-20 border-msi dark:bg-opacity-30 flex-grow">
+                        <h3 class="font-bold text-lg text-msi">MSI :</h3>
+                        <p>"On t'aimera… quand tu tiendras plus de 1 an sans cramer."</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="page-number">4</div>
+            
+            <div class="mt-8 flex justify-between">
+                <button class="page-nav back-btn bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded transition">
+                    Page précédente
+                </button>
+                <button class="page-nav next-btn bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition">
+                    Fin du chapitre
+                </button>
+            </div>
+        </div>
+        
+        <!-- Ending -->
+        <div id="ending" class="page-card hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl p-8 mb-8 transition-all duration-500 relative">
+            <h2 class="text-2xl font-bold mb-6 rgb-text text-center">FIN — Chapitre 1</h2>
+            
+            <div class="flex justify-center mb-8">
+                <div class="relative">
+                    <i class="fa-solid fa-book-open text-6xl text-purple-600"></i>
+                    <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold">1</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                <div class="p-4 text-center">
+                    <i class="fa-solid fa-computer text-4xl text-asus"></i>
+                    <p class="mt-2 font-bold text-asus">ASUS</p>
+                    <div class="mt-1 flex justify-center">
+                        <div class="inline-flex items-center">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-4 text-center">
+                    <i class="fa-solid fa-microchip text-4xl text-gigabyte"></i>
+                    <p class="mt-2 font-bold text-gigabyte">Gigabyte</p>
+                    <div class="mt-1 flex justify-center">
+                        <div class="inline-flex items-center">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star-half-stroke text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-4 text-center">
+                    <i class="fa-solid fa-dragon text-4xl text-msi"></i>
+                    <p class="mt-2 font-bold text-msi">MSI</p>
+                    <div class="mt-1 flex justify-center">
+                        <div class="inline-flex items-center">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-4 text-center">
+                    <i class="fa-solid fa-laptop text-4xl text-acer freeze-effect"></i>
+                    <p class="mt-2 font-bold text-acer">Acer</p>
+                    <div class="mt-1 flex justify-center">
+                        <div class="inline-flex items-center">
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                            <i class="fa-solid fa-star-half-stroke text-yellow-500"></i>
+                            <i class="fa-regular fa-star text-yellow-500"></i>
+                            <i class="fa-regular fa-star text-yellow-500"></i>
+                            <i class="fa-regular fa-star text-yellow-500"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-600 dark:text-gray-400 italic mb-8">À suivre dans le prochain chapitre...</p>
+            
+            <div class="mt-8 flex justify-between">
+                <button class="page-nav back-btn bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 text-gray-800 dark:text-white font-bold py-2 px-4 rounded transition">
+                    Page précédente
+                </button>
+                <button id="restart-btn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded transition">
+                    Recommencer
+                </button>
+            </div>
+        </div>
+        
+        <!-- Dark mode toggle -->
+        <div class="fixed top-4 right-4">
+            <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400">
+                <i class="fa-solid fa-sun text-yellow-500 dark:hidden"></i>
+                <i class="fa-solid fa-moon text-blue-300 hidden dark:block"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection and toggle
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+            if (event.matches) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        });
+        
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // Page navigation
+        const pages = ['cover', 'page-1', 'page-2', 'page-3', 'page-4', 'ending'];
+        let currentPageIndex = 0;
+        
+        function showPage(index) {
+            // Hide all pages
+            pages.forEach(page => {
+                document.getElementById(page).classList.add('hidden');
+            });
+            
+            // Show the current page
+            document.getElementById(pages[index]).classList.remove('hidden');
+            
+            // Add page turn animation
+            const currentPage = document.getElementById(pages[index]);
+            currentPage.classList.add('page-turn');
+            
+            if (index > currentPageIndex) {
+                currentPage.classList.add('page-turn-left');
+            } else {
+                currentPage.classList.add('page-turn-right');
+            }
+            
+            // Remove animation classes after transition completes
+            setTimeout(() => {
+                currentPage.classList.remove('page-turn', 'page-turn-left', 'page-turn-right');
+            }, 600);
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            currentPageIndex = index;
+        }
+        
+        // Start button event
+        document.getElementById('start-button').addEventListener('click', () => {
+            showPage(1); // Show first page
+        });
+        
+        // Restart button event
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            showPage(0); // Return to cover
+        });
+        
+        // Setup navigation buttons
+        document.querySelectorAll('.page-nav').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (e.target.classList.contains('next-btn')) {
+                    if (currentPageIndex < pages.length - 1) {
+                        showPage(currentPageIndex + 1);
+                    }
+                } else if (e.target.classList.contains('back-btn')) {
+                    if (currentPageIndex > 0) {
+                        showPage(currentPageIndex - 1);
+                    }
+                }
+            });
+        });
+        
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add shake effect to Acer when clicked
+            const acerElements = document.querySelectorAll('.fa-laptop');
+            acerElements.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    elem.classList.add('shake-element');
+                    setTimeout(() => {
+                        elem.classList.remove('shake-element');
+                    }, 500);
+                });
+            });
+            
+            // Add RGB glow effect when clicking on RGB text
+            const rgbElements = document.querySelectorAll('.rgb-text');
+            rgbElements.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    elem.style.animationDuration = '0.5s';
+                    setTimeout(() => {
+                        elem.style.animationDuration = '3s';
+                    }, 2000);
+                });
+            });
+            
+            // Add sound effect to dragon elements
+            const dragonElements = document.querySelectorAll('.fa-dragon');
+            dragonElements.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    elem.classList.add('animate-bounce-slow');
+                    setTimeout(() => {
+                        elem.classList.remove('animate-bounce-slow');
+                    }, 2000);
+                });
+            });
+            
+            // Add overheat effect to temperature text
+            const overheatElements = document.querySelectorAll('.overheat');
+            overheatElements.forEach(elem => {
+                elem.addEventListener('click', () => {
+                    elem.style.animationDuration = '0.3s';
+                    setTimeout(() => {
+                        elem.style.animationDuration = '1.5s';
+                    }, 1500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
